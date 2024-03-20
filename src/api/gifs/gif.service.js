@@ -62,6 +62,7 @@ module.exports = {
     );
   },
   updateGif: (data, callBack) => {
+    console.log("updateGif ->", data);
     pool.query(
       `UPDATE gifs SET title=?, giphy_id=?, slug=?, url=? WHERE id = ?`,
       [data.title, data.giphy_id, data.slug, data.url, data.id],
@@ -74,16 +75,12 @@ module.exports = {
     );
   },
   deleteGif: (id, callBack) => {
-    pool.query(
-      `DELETE FROM gifs WHERE id = ?`,
-      [id],
-      (error, results, _) => {
-        if (error) {
-          throw error;
-        }
-        return callBack(results);
-      },
-    );
+    pool.query(`DELETE FROM gifs WHERE id = ?`, [id], (error, results, _) => {
+      if (error) {
+        throw error;
+      }
+      return callBack(results);
+    });
   },
   //
   updateUser: (data, callBack) => {

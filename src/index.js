@@ -30,7 +30,28 @@ app.use((_, res, next) => {
   next();
 });
 
-app.get("/", (_, res) => {
+app.get("/test", (_, res) => {
+  const AWS = require("aws-sdk");
+  const s3 = new AWS.S3({
+    accessKeyId: process.env.S3_ACCESS_KEY,
+    secretAccessKey: process.env.S3_SECRET_KEY,
+    region: process.env.S3_REGION,
+  });
+
+  var uploadParams = {
+    Bucket: process.env.S3_BUCKET,
+    Key: "test.txt",
+    Body: "Hello World!",
+  };
+
+  s3.upload(uploadParams, function (err, data) {
+    if (err) {
+      console.log("Error", err);
+    }
+    if (data) {
+      console.log("Upload Success", data.Location);
+    }
+  });
   res.send("Express + TypeScript Server");
 });
 
