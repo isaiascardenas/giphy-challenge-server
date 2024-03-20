@@ -8,6 +8,10 @@ After clone this repository install dependencies executing
 ```
 npm install
 ```
+Copy .env.example file to .env file and update the environment variables
+```
+cp .env.example .env
+```
 Then start the server by runing
 ```
 npm start
