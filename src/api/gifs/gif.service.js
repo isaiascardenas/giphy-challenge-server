@@ -62,7 +62,6 @@ module.exports = {
     );
   },
   updateGif: (data, callBack) => {
-    console.log("updateGif ->", data);
     pool.query(
       `UPDATE gifs SET title=?, giphy_id=?, slug=?, url=? WHERE id = ?`,
       [data.title, data.giphy_id, data.slug, data.url, data.id],

@@ -44,7 +44,10 @@ module.exports = {
           );
         });
       } catch (err) {
-        console.log("Error loading gifs", err);
+        return res.status(500).json({
+          message: "error",
+          data: { message: err.message },
+        });
       }
     } else {
       try {
@@ -66,7 +69,10 @@ module.exports = {
           );
         });
       } catch (err) {
-        console.log("Error loading gifs", err);
+        return res.status(500).json({
+          message: "error",
+          data: { message: err.message },
+        });
       }
     }
   },
@@ -79,7 +85,10 @@ module.exports = {
         });
       });
     } catch (err) {
-      console.log("Error loading gif", err);
+      return res.status(500).json({
+        message: "error",
+        data: { message: err.message },
+      });
     }
   },
   storeGif: (req, res) => {
@@ -135,8 +144,6 @@ module.exports = {
     const requestTitle = req.body.title;
     const requestUrl = req.body.url;
     const requestId = req.body.id;
-    console.log("requestTitle-> ", requestTitle);
-    console.log("requestUrl -> ", requestUrl);
 
     if (requestUrl && requestUrl.length > 0) {
       const body = {
@@ -220,7 +227,10 @@ module.exports = {
         });
       });
     } catch (err) {
-      console.log("Error removing gif", err);
+      return res.status(500).json({
+        message: "error",
+        data: { message: err.message },
+      });
     }
   },
 };
